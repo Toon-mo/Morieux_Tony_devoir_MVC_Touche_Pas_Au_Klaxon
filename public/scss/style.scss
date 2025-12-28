@@ -1,0 +1,451 @@
+/**
+ * @file style.scss
+ * Fichier principal des styles SCSS de l'application.
+ * 
+ * Ce fichier importe les variables personnalisées et Bootstrap,
+ * puis ajoute des styles spécifiques au projet "Touche Pas Au Klaxon".
+ * 
+ * @package TouchePasAuKlaxon
+ * @author Tony Morieux
+ */
+
+// ============================================
+// 1. IMPORTS
+// ============================================
+
+// Import des variables personnalisées (AVANT Bootstrap)
+@import "variables";
+
+// ============================================
+// 2. STYLES GLOBAUX
+// ============================================
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  background-color: $body-bg;
+  color: $body-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ============================================
+// 3. HEADER & NAVIGATION
+// ============================================
+
+header {
+  .navbar {
+    background: linear-gradient(135deg, $color3 0%, $color2 100%);
+    box-shadow: $box-shadow;
+    padding: 1rem 0;
+
+    .navbar-brand {
+      color: $color1 !important;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.5px;
+      transition: $transition-base;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $color1 !important;
+      }
+    }
+
+    .nav-link {
+      color: rgba($color1, 0.9) !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.375rem;
+      transition: $transition-base;
+
+      &:hover {
+        background-color: rgba($color1, 0.1);
+        color: $color1 !important;
+      }
+
+      &.fw-bold {
+        color: $color1 !important;
+        background-color: rgba($color1, 0.15);
+      }
+    }
+
+    // Liens spécifiques admin
+    .adminUsers,
+    .adminAgencies,
+    .adminTrajets {
+      color: $color1 !important;
+      background-color: rgba($color5, 0.3);
+
+      &:hover {
+        background-color: rgba($color5, 0.6);
+      }
+    }
+
+    .btn-link {
+      color: rgba($color1, 0.9) !important;
+      text-decoration: none;
+
+      &:hover {
+        color: $color1 !important;
+      }
+    }
+  }
+}
+
+// ============================================
+// 4. CONTENU PRINCIPAL
+// ============================================
+
+main.container {
+  flex: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+// Titres
+h1 {
+  color: $color3;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+
+  &.text-center {
+    color: $color2;
+  }
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color1;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+
+  &.text-center {
+    color: $color2;
+  }
+}
+
+// ============================================
+// 5. CARDS
+// ============================================
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  // Désactiver la transformation au survol sur les cards avec des modales
+  // pour éviter les conflits
+  transition: box-shadow 0.2s ease-in-out;
+
+  // Animation de survol uniquement pour certaines cards
+  &:not(.no-hover):hover {
+    box-shadow: $box-shadow-lg;
+  }
+
+  .card-header {
+    font-weight: 700;
+    border-bottom: 3px solid rgba($color1, 0.2);
+    padding: 1rem 1.5rem;
+
+    &.bg-primary {
+      background: linear-gradient(135deg, $color2 0%, $color3 100%) !important;
+    }
+
+    &.bg-dark {
+      background: linear-gradient(
+        135deg,
+        $color4 0%,
+        lighten($color4, 10%) 100%
+      ) !important;
+    }
+
+    &.bg-warning {
+      background: linear-gradient(
+        135deg,
+        $color5 0%,
+        lighten($color5, 10%) 100%
+      ) !important;
+    }
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// ============================================
+// 6. TABLES
+// ============================================
+
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  thead {
+    background-color: $color3;
+    color: $color1;
+
+    th {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      letter-spacing: 0.5px;
+      border: none;
+      padding: 1rem;
+    }
+  }
+
+  tbody {
+    tr {
+      // Réduire la transition pour éviter le scintillement
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: $color1;
+        // Retirer le transform qui cause le scintillement avec les modales
+      }
+
+      td {
+        vertical-align: middle;
+        padding: 1rem;
+      }
+    }
+  }
+
+  &.table-striped tbody tr:nth-of-type(odd) {
+    background-color: lighten($color1, 3%);
+  }
+}
+
+// ============================================
+// 7. BOUTONS
+// ============================================
+
+.btn {
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  transition: $transition-base;
+  border: none;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Variantes de couleurs
+  &.btn-primary {
+    background: linear-gradient(135deg, $color2 0%, $color3 100%);
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        darken($color2, 5%) 0%,
+        darken($color3, 5%) 100%
+      );
+    }
+  }
+
+  &.btn-success {
+    background-color: $color6;
+
+    &:hover {
+      background-color: darken($color6, 8%);
+    }
+  }
+
+  &.btn-danger {
+    background-color: $color5;
+
+    &:hover {
+      background-color: darken($color5, 8%);
+    }
+  }
+
+  &.btn-warning {
+    background-color: $color5;
+    color: $color1;
+
+    &:hover {
+      background-color: darken($color5, 8%);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $color4;
+
+    &:hover {
+      background-color: lighten($color4, 10%);
+    }
+  }
+}
+
+// ============================================
+// 8. BADGES
+// ============================================
+
+.badge {
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+
+  &.bg-success {
+    background-color: $color6 !important;
+  }
+
+  &.bg-danger {
+    background-color: $color5 !important;
+  }
+
+  &.bg-primary {
+    background-color: $color2 !important;
+  }
+}
+
+// ============================================
+// 9. ALERTS (Messages)
+// ============================================
+
+.alert {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  box-shadow: $box-shadow-sm;
+  border-left: 4px solid;
+
+  &.alert-success {
+    background-color: lighten($color6, 45%);
+    border-left-color: $color6;
+    color: darken($color6, 20%);
+  }
+
+  &.alert-danger {
+    background-color: lighten($color5, 40%);
+    border-left-color: $color5;
+    color: darken($color5, 10%);
+  }
+
+  &.alert-warning {
+    background-color: lighten($color5, 45%);
+    border-left-color: $color5;
+    color: darken($color5, 15%);
+  }
+
+  &.alert-info {
+    background-color: lighten($color2, 45%);
+    border-left-color: $color2;
+    color: darken($color2, 10%);
+  }
+}
+
+// ============================================
+// 10. FORMULAIRES
+// ============================================
+
+.form-control,
+.form-select {
+  border: 2px solid $input-border-color;
+  border-radius: 0.375rem;
+  padding: 0.6rem 1rem;
+  transition: $transition-base;
+}
+
+.form-label {
+  font-weight: 600;
+  color: $color4;
+  margin-bottom: 0.5rem;
+}
+
+.form-check-input {
+  &:checked {
+    background-color: $color2;
+    border-color: $color2;
+  }
+
+  &:focus {
+    border-color: $color2;
+    box-shadow: 0 0 0 0.2rem rgba($color2, 0.25);
+  }
+}
+
+// ============================================
+// 11. MODALES
+// ============================================
+
+.modal {
+  // Désactiver les transformations qui causent le scintillement
+  .modal-dialog {
+    transform: none !important;
+  }
+
+  .modal-content {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: $box-shadow-lg;
+    // Éviter les transformations sur la modale
+    transform: none !important;
+    transition: opacity 0.15s linear !important;
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, $color2 0%, $color3 100%);
+    color: $color1;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    .btn-close {
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .modal-title {
+      font-weight: 600;
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    // Éviter les transformations sur le contenu
+    transform: none !important;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $border-color;
+    padding: 1rem 1.5rem;
+    background-color: lighten($color1, 2%);
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+}
+
+// ============================================
+// 12. FOOTER
+// ============================================
+
+footer {
+  background: linear-gradient(135deg, $color4 0%, lighten($color4, 10%) 100%);
+  color: rgba($color1, 0.8);
+  padding: 1.5rem 0;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}
