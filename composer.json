@@ -1,0 +1,28 @@
+{
+    "name": "morieuxtony/mvc_touche_pas_au_klaxon",
+    "description": "Devoir MVC en PHP",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Morieuxtony\\MvcTest\\": "src/"
+        },
+        "files": [
+            "config/env.php",
+            "config/database.php",
+            "config/security.php",
+            "src/Controllers/Utilities.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "MorieuxTony",
+            "email": "tmorieux@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "^3.9",
+        "phpstan/phpstan": "^2.1",
+        "squizlabs/php_codesniffer": "^4.0"
+    }
+}

@@ -1,0 +1,24 @@
+# ------------------------------------
+# SÉCURITÉ & CONFIGURATION
+# ------------------------------------
+.env
+
+# ------------------------------------
+# DÉPENDANCES
+# ------------------------------------
+vendor/
+
+# ------------------------------------
+# TESTS UNITAIRES
+# ------------------------------------
+# Cache les résultats de tests
+.phpunit.result.cache
+
+# ------------------------------------
+# FICHIERS DU PROJET
+# ------------------------------------
+# Pour le rendu scolaire, le seed et les txt sont envoyés sur GitHub.
+# On les commentent ici pour mémoire, mais seront commités.
+# seed.php
+# agences.txt
+# users.txt

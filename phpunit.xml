@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         verbose="true">
+    
+    <testsuites>
+        <testsuite name="Mon Projet MVC">
+            <!-- On dit à PHPUnit de chercher les tests dans le dossier tests/ -->
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- On charge les variables d'environnement pour que la BDD fonctionne pendant les tests -->
+    <php>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="DB_NAME" value="touche_pas_au_klaxon"/>
+        <env name="DB_USER" value="Admin"/>
+        <env name="DB_PASS" value="123456"/>
+    </php>
+</phpunit>

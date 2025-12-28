@@ -1,0 +1,41 @@
+# ===========================================
+# OPTIONS DE SÉCURITÉ GÉNÉRALES
+# ===========================================
+
+# Empèche la navigation dans les répertoires
+Options +FollowSymLinks -Indexes
+
+# ============================================
+# SÉCURITÉ - PROTECTION DES FICHIERS SENSIBLES
+# ============================================
+
+# Bloque l'accès aux fichiers sensibles
+<Files ".env">
+    Require all denied
+</Files>
+
+<Files "seed.php">
+    Require all denied
+</Files>
+
+<FilesMatch "\.(txt)$">
+    Require all denied
+</FilesMatch>
+
+# ============================================
+# REDIRECTION VERS LE DOSSIER PUBLIC
+# ============================================
+
+# Active le moteur de réécriture d'URL
+RewriteEngine On
+
+# Redirige toutes les requètes vers le dossier public
+RewriteRule ^$ public/ [L]
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+
+# Si le fichier ou dossier demandé existe physiquement (ex: css, images), on le sert directement
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sinon, on envoie tout à index.php avec le paramètre "page"
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
